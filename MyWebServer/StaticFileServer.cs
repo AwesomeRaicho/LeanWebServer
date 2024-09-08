@@ -49,7 +49,6 @@ namespace MyWebServer
                 //Console.WriteLine($"RawUrl: {ctx.Request.RawUrl}");
                 //Console.WriteLine($"Url.AbsolutePath: {ctx.Request.Url?.AbsolutePath}");
               
-                Console.WriteLine()
                 Console.WriteLine($"Request: {ctx.Request.HttpMethod} {ctx.Request.Url}");
 
                 

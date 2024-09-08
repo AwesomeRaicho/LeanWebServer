@@ -12,3 +12,4 @@ C:\Users\users\Documents\Programing_Intermidiate\MyWebServer\MyWebServer\MyWebSe
 C:\Users\users\Documents\Programing_Intermidiate\MyWebServer\MyWebServer\MyWebServer\obj\Debug\net8.0\MyWebServer.pdb
 C:\Users\users\Documents\Programing_Intermidiate\MyWebServer\MyWebServer\MyWebServer\obj\Debug\net8.0\MyWebServer.genruntimeconfig.cache
 C:\Users\users\Documents\Programing_Intermidiate\MyWebServer\MyWebServer\MyWebServer\obj\Debug\net8.0\ref\MyWebServer.dll
+C:\Users\users\Documents\Programing_Intermidiate\MyWebServer\MyWebServer\MyWebServer\obj\Debug\net8.0\MyWebServer.sourcelink.json
