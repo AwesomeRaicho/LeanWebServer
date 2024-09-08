@@ -124,10 +124,6 @@ namespace MyWebServer
         }
 
 
-
-
-
-        //helper functions
         private string RightOfRightmostOf(string src, char c)
         {
             string ret = String.Empty;

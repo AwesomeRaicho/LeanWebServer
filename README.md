@@ -6,7 +6,7 @@ This is a console application developed in C# that leverages `HttpListener` to h
 
 ## Purpose
 
-This project is part of my portfolio. While working on ASP.NET applications, I realized it would be beneficial to delve deeper into web server development by creating a simple web server from scratch.
+This project is part of my portfolio. While working on ASP.NET applications, I realized it would be beneficial to dive deeper into web server development by creating a simple web server from scratch (at least one level lower).
 
 ## Target Audience
 
@@ -33,5 +33,3 @@ This project is aimed at job recruiters who are interested in exploring my gener
 ## Work in Progress
 
 - Session system
-
-Feel free to contribute or provide feedback on the project!

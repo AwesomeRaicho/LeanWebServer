@@ -41,20 +41,18 @@ namespace MyWebServer
             {
                 HttpListenerContext ctx = await listener.GetContextAsync();
 
-                Console.WriteLine($"New request: ###################");
-                Console.WriteLine($"Url: {ctx.Request.Url}");
-                Console.WriteLine($"Url.AbsolutePath: {ctx.Request.Url?.AbsolutePath}");
-                Console.WriteLine($"Url.AbsoluteUri: {ctx.Request.Url?.AbsoluteUri}");
-                Console.WriteLine($"Headers: {ctx.Request.Headers}");
-                Console.WriteLine($"RemoteEndPoint: {ctx.Request.RemoteEndPoint}");
-                Console.WriteLine($"RawUrl: {ctx.Request.RawUrl}");
-                //ctx.Request.HttpMethod
+                // If you would like any request details logged:
+                //Console.WriteLine($"New request: ###################");
+                //Console.WriteLine($"Url.AbsoluteUri: {ctx.Request.Url?.AbsoluteUri}");
+                //Console.WriteLine($"Headers: {ctx.Request.Headers}");
+                //Console.WriteLine($"RemoteEndPoint: {ctx.Request.RemoteEndPoint}");
+                //Console.WriteLine($"RawUrl: {ctx.Request.RawUrl}");
+                //Console.WriteLine($"Url.AbsolutePath: {ctx.Request.Url?.AbsolutePath}");
+              
+                Console.WriteLine()
+                Console.WriteLine($"Request: {ctx.Request.HttpMethod} {ctx.Request.Url}");
 
-
-
-                //this method will take care of responding
-
-                //[get Response Packet]
+                
                 string? route = ctx.Request.Url?.AbsolutePath.TrimStart('/');
                 string filePath;
 
@@ -67,6 +65,7 @@ namespace MyWebServer
                     filePath = GetFilePath(route);
                 }
 
+                // ROUTER CALL!
                 RouterResponsePacket packet = _router.Route(filePath);
 
                 if (string.IsNullOrEmpty(packet.Redirect))
@@ -85,11 +84,11 @@ namespace MyWebServer
 
 
 
-                //here we just out put what we sent.
-                Console.WriteLine("New Response: ###################");
-                Console.WriteLine($"Status Code: {ctx.Response.StatusCode}");
-                Console.WriteLine($"Content Type: {ctx.Response.ContentType}");
-                Console.WriteLine($"ContentLength64: {ctx.Response.ContentLength64}");
+                // If you would like any response detailes logged:
+                //Console.WriteLine("New Response: ###################");
+                //Console.WriteLine($"Status Code: {ctx.Response.StatusCode}");
+                //Console.WriteLine($"Content Type: {ctx.Response.ContentType}");
+                //Console.WriteLine($"ContentLength64: {ctx.Response.ContentLength64}");
 
                 ctx.Response.Close();
 
@@ -132,90 +131,3 @@ namespace MyWebServer
 
     }
 }
-
-
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////
-//private async Task SendErrorFileAsync(HttpListenerResponse response, RouterResponsePacket packet)
-//{
-
-
-//    try
-//    {
-//        response.ContentType = packet.ContentType;
-//        response.ContentLength64 = packet.Data.Length;
-//        response.ContentEncoding = packet.Encoding;
-//        response.StatusCode = (int)HttpStatusCode.OK;
-//        await response.OutputStream.WriteAsync(packet.Data, 0, packet.Data.Length);
-//        response.OutputStream.Close();
-
-//    }
-//    catch (Exception ex)
-//    {
-//        throw new Exception(ex.Message);
-//    }
-
-//}
-
-//private async Task ProccessRequest(HttpListenerContext ctx, RouterResponsePacket packet)
-
-//{
-//    if (File.Exists(filePath))
-//    {
-//        try
-//        {
-//            ctx.Response.StatusCode = (int)HttpStatusCode.OK;
-//            await SendFileAsync(ctx.Response, filePath);
-
-//            return;
-
-//        }
-//        catch(HttpListenerException ex) 
-//        {
-//            ctx.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-//            Console.WriteLine($"HttpException: {ex.Message}");
-
-
-//        }catch(Exception ex)
-//        {
-//            ctx.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-
-//            Console.WriteLine($"{ex.GetType()}: {ex.Message}");
-
-//        }
-
-//    }
-
-
-//    //THIS SNIPPET HANDLES NOT FOUND FILES
-//    {
-//        try
-//        {
-//            ctx.Response.StatusCode = (int)HttpStatusCode.NotFound;
-//            await SendFileAsync(ctx.Response, Path.Combine(hostDir, "notFound.html"));
-
-//            return;
-
-//        }
-//        catch (HttpListenerException ex)
-//        {
-//            ctx.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-//            Console.WriteLine($"HttpException: {ex.Message}");
-
-
-//        }
-//        catch (Exception ex)
-//        {
-//            ctx.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-
-//            Console.WriteLine($"{ex.GetType()}: {ex.Message}");
-
-//        }
-//    }
-
-
-//}
