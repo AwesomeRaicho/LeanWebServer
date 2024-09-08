@@ -64,6 +64,15 @@ namespace MyWebServer
                     filePath = GetFilePath(route);
                 }
 
+
+                if(route == "shutdown")
+                {
+                    ctx.Response.StatusCode = (int)HttpStatusCode.OK;
+                    running = false;
+                    ctx.Response.Close();
+                    return 0;
+                }
+
                 // ROUTER CALL!
                 RouterResponsePacket packet = _router.Route(filePath);
 
